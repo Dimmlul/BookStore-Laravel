@@ -9,9 +9,8 @@ class CartItem extends Model
     protected $fillable = [
         'cart_id',
         'book_id',
-        'quantity',
+        'jumlah',
         'subtotal',
-        'status'
     ];
 
     // Relasi Many-to-One dengan Cart

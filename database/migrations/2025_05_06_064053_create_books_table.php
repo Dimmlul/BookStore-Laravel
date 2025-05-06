@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id(); // Primary key
             $table->string('judul'); // Judul buku
             $table->string('penulis'); // Penulis buku
-            $table->decimal('harga', 8, 2); // Harga buku disimpan sebagai decimal
+            $table->integer('harga'); // Harga buku
             $table->integer('stok'); // Stok buku
             $table->text('deskripsi')->nullable(); // Deskripsi buku (optional)
             $table->foreignId('kategori_id')->constrained('categories'); // Foreign key ke tabel categories
