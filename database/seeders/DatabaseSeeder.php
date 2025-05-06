@@ -8,7 +8,7 @@ use App\Models\Book;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Order;
-use App\Models\OrderItem;
+use App\Models\OrderDetail;
 
 class DatabaseSeeder extends Seeder
 {
@@ -107,26 +107,24 @@ class DatabaseSeeder extends Seeder
             'user_id' => 2,
             'alamat_pengiriman' => 'Jl. Customer No. 2',
             'status' => 'delivered',
-            'metode_pembayaran' => 'COD', // Payment method
+            'metode_pembayaran' => 'Cashless', // Payment method
         ]);
 
-        // Seeder untuk OrderItems
-        OrderItem::create([
+        // Seeder untuk OrderDetails
+        OrderDetail::create([
             'order_id' => 1, // Order dengan ID 1
             'book_id' => 1,  // Buku dengan ID 1
             'quantity' => 2,
             'price' => 10000,
             'subtotal' => 20000,
-            'status' => 'shipped', // Item shipped
         ]);
 
-        OrderItem::create([
+        OrderDetail::create([
             'order_id' => 2, // Order dengan ID 2
             'book_id' => 2,  // Buku dengan ID 2
             'quantity' => 1,
             'price' => 15000,
             'subtotal' => 15000,
-            'status' => 'delivered', // Item delivered
         ]);
     }
 }

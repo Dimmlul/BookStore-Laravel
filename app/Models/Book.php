@@ -28,9 +28,9 @@ class Book extends Model
         return $this->hasMany(CartItem::class);
     }
 
-    // Relasi One-to-Many dengan OrderItem
-    public function orderItems()
+    // Relasi One-to-Many dengan OrderDetail
+    public function orderDetails()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderDetail::class);
     }
 }
