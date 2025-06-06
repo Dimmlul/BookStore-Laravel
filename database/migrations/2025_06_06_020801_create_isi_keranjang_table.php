@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('isi_keranjang', function (Blueprint $table) {
+        Schema::create('isi_keranjangs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('keranjang_id')->constrained('keranjang')->onDelete('cascade');
-            $table->foreignId('buku_id')->constrained('buku')->onDelete('cascade');
+            $table->foreignId('keranjang_id')->constrained('keranjangs')->onDelete('cascade');
+            $table->foreignId('buku_id')->constrained('bukus')->onDelete('cascade');
             $table->integer('jumlah');
             $table->integer('harga');
             $table->timestamps();

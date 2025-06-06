@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pesan', function (Blueprint $table) {
+        Schema::create('pesans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('user')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('subjek');
             $table->text('isi');
             $table->enum('status', ['belum', 'sudah']);

@@ -37,12 +37,16 @@ class AuthController extends Controller
             'nama' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
+            'alamat'=> 'required',
+            'no_telp'=>'required',
         ]);
 
         User::create([
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'alamat'=>$request->alamat,
+            'no_telp'=>$request->no_telp,
             'role' => 'user',
         ]);
 

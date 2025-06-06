@@ -9,7 +9,7 @@ class IsiKeranjang extends Model
 {
     use HasFactory;
 
-    protected $table = 'isi_keranjang';
+    protected $table = 'isi_keranjangs';
 
     protected $fillable = ['keranjang_id', 'buku_id', 'jumlah', 'harga'];
 
