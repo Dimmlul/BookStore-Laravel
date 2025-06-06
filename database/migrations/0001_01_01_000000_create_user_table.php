@@ -8,12 +8,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->id(); // Primary key
-            $table->string('username'); // Nama pengguna
+            $table->string('nama'); // Nama pengguna
             $table->string('email')->unique(); // Email pengguna, harus unik
             $table->string('password'); // Password pengguna
             $table->enum('role', ['admin', 'user']); // Role pengguna
+            $table->string('alamat');
+            $table->string('no_telp');
 
             // Bawaan Laravel
             $table->timestamp('email_verified_at')->nullable();

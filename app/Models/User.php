@@ -11,11 +11,15 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'user';
+
     protected $fillable = [
-        'username',
+        'nama',
         'email',
         'password',
         'role',
+        'alamat',
+        'no_telp',
     ];
 
     protected $hidden = [
@@ -30,21 +34,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    // Relasi One-to-One dengan Cart
-    public function cart()
+    public function pesan()
     {
-        return $this->hasOne(Cart::class);
+        return $this->hasMany(Pesan::class);
     }
-
-    // Relasi One-to-Many dengan Order
-    public function orders()
+    public function keranjang()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasOne(Keranjang::class);
     }
-
-    // Relasi One-to-Many dengan Message
-    public function messages()
+    public function pesanan()
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Pesanan::class);
     }
 }

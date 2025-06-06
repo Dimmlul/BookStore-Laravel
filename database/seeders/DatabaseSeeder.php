@@ -3,128 +3,97 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\Category;
-use App\Models\Book;
-use App\Models\Cart;
-use App\Models\CartItem;
-use App\Models\Order;
-use App\Models\OrderDetail;
+use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\Keranjang;
+use App\Models\Pesanan;
+use App\Models\IsiKeranjang;
+use App\Models\IsiPesanan;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // Seeder untuk Users
+        // Seeder untuk User
         User::create([
-            'username' => 'Admin User',
+            'nama' => 'Admin User',
             'email' => 'admin@bookstore.com',
             'password' => Hash::make('admin123'),
             'role' => 'admin',
+            'alamat' => 'Admin Address',
+            'no_telp' => '081234567890',
         ]);
 
         User::create([
-            'username' => 'Customer User',
+            'nama' => 'Customer User',
             'email' => 'customer@bookstore.com',
             'password' => Hash::make('customer123'),
             'role' => 'user',
+            'alamat' => 'Customer Address',
+            'no_telp' => '082345678901',
         ]);
 
-        // Seeder untuk Categories
-        Category::create(['nama_kategori' => 'Fiction']);
-        Category::create(['nama_kategori' => 'Non-Fiction']);
-        Category::create(['nama_kategori' => 'Science']);
-        Category::create(['nama_kategori' => 'Fantasy']);
-        Category::create(['nama_kategori' => 'Biography']);
-
-        // Seeder untuk Books
-        Book::create([
-            'judul' => 'The Great Adventure',
-            'penulis' => 'John Doe',
-            'harga' => 10000,
-            'stok' => 50,
-            'deskripsi' => 'A thrilling adventure book.',
-            'kategori_id' => 1,
-            'gambar' => 'book1.jpg',
+        // Seeder untuk Kategori
+        $kategori1 = Kategori::create([
+            'kategori_buku' => 'Fiksi',
         ]);
 
-        Book::create([
-            'judul' => 'Science and You',
-            'penulis' => 'Jane Smith',
-            'harga' => 15000,
-            'stok' => 30,
-            'deskripsi' => 'A scientific approach to everyday life.',
-            'kategori_id' => 3,
-            'gambar' => 'book2.jpg',
+        $kategori2 = Kategori::create([
+            'kategori_buku' => 'Non-fiksi',
         ]);
 
-        Book::create([
-            'judul' => 'Fantasy World',
-            'penulis' => 'Mark Twain',
-            'harga' => 20000,
+        // Seeder untuk Buku
+        Buku::create([
+            'judul' => 'Novel Pertama',
+            'penulis' => 'Penulis A',
+            'harga' => 100000,
+            'bahasa' => 'Indonesia',
+            'deskripsi' => 'Deskripsi buku fiksi pertama.',
             'stok' => 10,
-            'deskripsi' => 'An epic fantasy journey.',
-            'kategori_id' => 4,
-            'gambar' => 'book3.jpg',
+            'ISBN' => '123-4567890123',
+            'kategori_id' => $kategori1->id,
         ]);
 
-        // Seeder untuk Carts
-        Cart::create([
-            'user_id' => 1, // Admin
-            'status' => 'draft',
+        Buku::create([
+            'judul' => 'Buku Sejarah',
+            'penulis' => 'Penulis B',
+            'harga' => 150000,
+            'bahasa' => 'Indonesia',
+            'deskripsi' => 'Deskripsi buku non-fiksi tentang sejarah.',
+            'stok' => 5,
+            'ISBN' => '987-6543210987',
+            'kategori_id' => $kategori2->id,
         ]);
 
-        Cart::create([
-            'user_id' => 2, // Customer
-            'status' => 'checkout',
+        // Seeder untuk Keranjang
+        $keranjang = Keranjang::create([
+            'user_id' => 2, // Assuming customer user has ID 2
+            'status' => 'Draft',
         ]);
 
-        // Seeder untuk CartItems
-        CartItem::create([
-            'cart_id' => 1, // Cart untuk admin
-            'book_id' => 1, // Buku dengan ID 1
-            'quantity' => 2,
-            'subtotal' => 20000,
+        // Seeder untuk Isi Keranjang
+        IsiKeranjang::create([
+            'keranjang_id' => $keranjang->id,
+            'buku_id' => 1, // Assuming the first book has ID 1
+            'jumlah' => 2,
+            'harga' => 100000,
         ]);
 
-        CartItem::create([
-            'cart_id' => 2, // Cart untuk customer
-            'book_id' => 2, // Buku dengan ID 2
-            'quantity' => 1,
-            'subtotal' => 15000,
-        ]);
-
-        // Seeder untuk Orders
-        Order::create([
-            'cart_id' => 1,
-            'user_id' => 1,
-            'alamat_pengiriman' => 'Jl. Admin No. 1',
-            'status' => 'pending',
-            'metode_pembayaran' => 'COD', // Payment method
-        ]);
-
-        Order::create([
-            'cart_id' => 2,
+        // Seeder untuk Pesanan
+        $pesanan = Pesanan::create([
             'user_id' => 2,
-            'alamat_pengiriman' => 'Jl. Customer No. 2',
-            'status' => 'delivered',
-            'metode_pembayaran' => 'Cashless', // Payment method
+            'total_harga' => 200000,
+            'metode_pembayaran' => 'Transfer',
+            'bukti_pembayaran' => 'path/to/bukti.jpg',
+            'status' => 'pending',
         ]);
 
-        // Seeder untuk OrderDetails
-        OrderDetail::create([
-            'order_id' => 1, // Order dengan ID 1
-            'book_id' => 1,  // Buku dengan ID 1
-            'quantity' => 2,
-            'price' => 10000,
-            'subtotal' => 20000,
-        ]);
-
-        OrderDetail::create([
-            'order_id' => 2, // Order dengan ID 2
-            'book_id' => 2,  // Buku dengan ID 2
-            'quantity' => 1,
-            'price' => 15000,
-            'subtotal' => 15000,
+        // Seeder untuk Isi Pesanan
+        IsiPesanan::create([
+            'pesanan_id' => $pesanan->id,
+            'buku_id' => 1,
+            'jumlah' => 2,
+            'harga' => 100000,
         ]);
     }
 }
