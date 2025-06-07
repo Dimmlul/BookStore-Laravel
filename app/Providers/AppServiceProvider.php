@@ -1,24 +1,23 @@
 <?php
 
+// app/Providers/AppServiceProvider.php
+
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RoleMiddleware;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+    public function boot()
     {
-        //
+        // Registering role middleware if it isn't registered elsewhere
+        Route::aliasMiddleware('role', RoleMiddleware::class);
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    public function register()
     {
-        //
+        // Other registration logic here
     }
 }
