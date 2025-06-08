@@ -49,7 +49,15 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('buku', AdminBukuController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('pesanan', AdminPesananController::class)->only(['index', 'show']);
-    Route::resource('pesan', AdminPesanController::class)->only(['index', 'show']);
+    // Rute untuk mengubah status pesanan
+    Route::post('pesanan/{id}/status', [AdminPesananController::class, 'editStatus'])->name('pesanan.editStatus');
+    // Menampilkan daftar pesan
+    Route::get('pesan', [AdminPesanController::class, 'index'])->name('pesan.index');
+
+    // Menampilkan detail pesan
+    Route::get('pesan/{id}', [AdminPesanController::class, 'show'])->name('pesan.show');
+    // Menyimpan balasan pesan
+    Route::post('pesan/{id}/balas', [AdminPesanController::class, 'reply'])->name('pesan.reply');
     Route::resource('pengguna', PenggunaController::class)->only(['index', 'show']);
 });
 
@@ -59,7 +67,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 // Menangani rute untuk user, hanya dapat diakses oleh pengguna biasa yang sudah login
 Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(function () {
     // Rute untuk menampilkan dashboard user
-    Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
+    Route::get('home', [UserController::class, 'index'])->name('home');
     // Rute untuk melihat dan mengedit profil user
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
 

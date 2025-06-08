@@ -1,14 +1,34 @@
-@extends('layouts.app')
+<!-- resources/views/layouts/admin.blade.php -->
 
-@section('title', 'Admin Dashboard')
+<!DOCTYPE html>
+<html lang="id">
 
-@section('sidebar')
-    @include('admin.sidebar') <!-- Sidebar khusus admin -->
-@endsection
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title', 'Admin Dashboard')</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
 
-@section('content')
-    <div class="container mt-4">
-        <h1>Selamat datang, Admin!</h1>
-        <p>Ini adalah dashboard admin, Anda dapat mengelola buku, kategori, dan pesanan di sini.</p>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Sidebar -->
+    @include('admin.sidebar')
+
+    <div class="flex flex-col flex-1 ml-64"> <!-- Sidebar fixed width -->
+        {{-- <!-- Navbar -->
+        @include('admin.header') --}}
+
+        <!-- Content -->
+        <main class="p-6 overflow-hidden">
+            @yield('content')
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center text-sm text-gray-500 py-4">
+            &copy; {{ date('Y') }} BukuStore. All rights reserved.
+        </footer>
     </div>
-@endsection
+
+</body>
+
+</html>

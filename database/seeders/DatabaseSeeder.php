@@ -9,6 +9,7 @@ use App\Models\Keranjang;
 use App\Models\Pesanan;
 use App\Models\IsiKeranjang;
 use App\Models\IsiPesanan;
+use App\Models\Pesan; // Import Pesan Model
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'kategori_buku' => 'Non-fiksi',
         ]);
 
-        // Seeder untuk Buku
+        // Seeder untuk Buku dengan gambar
         Buku::create([
             'judul' => 'Novel Pertama',
             'penulis' => 'Penulis A',
@@ -52,6 +53,7 @@ class DatabaseSeeder extends Seeder
             'stok' => 10,
             'ISBN' => '123-4567890123',
             'kategori_id' => $kategori1->id,
+            'gambar' => 'https://i.pinimg.com/736x/d8/43/c1/d843c1b0e2a1f79c43c43b53a8f01ec0.jpg', // Gambar untuk buku pertama
         ]);
 
         Buku::create([
@@ -63,6 +65,7 @@ class DatabaseSeeder extends Seeder
             'stok' => 5,
             'ISBN' => '987-6543210987',
             'kategori_id' => $kategori2->id,
+            'gambar' => 'https://i.pinimg.com/736x/7e/87/c8/7e87c846727a7d9289acfd1f37b273bf.jpg', // Gambar untuk buku kedua
         ]);
 
         // Seeder untuk Keranjang
@@ -94,6 +97,25 @@ class DatabaseSeeder extends Seeder
             'buku_id' => 1,
             'jumlah' => 2,
             'harga' => 100000,
+        ]);
+
+        // Seeder untuk Pesan (Pesan dari User ke Admin)
+        Pesan::create([
+            'user_id' => 2, // ID user customer
+            'subjek' => 'Pertanyaan tentang buku "Novel Pertama"',
+            'isi' => 'Apakah buku "Novel Pertama" masih tersedia di stok?',
+            'status' => 'belum', // Status pesan
+            'dikirim_pada' => now(), // Waktu pesan dikirim
+            'dibalas_pada' => null, // Belum dibalas
+        ]);
+
+        Pesan::create([
+            'user_id' => 2, // ID user customer
+            'subjek' => 'Pertanyaan tentang metode pembayaran',
+            'isi' => 'Bagaimana cara pembayaran untuk buku "Buku Sejarah"?',
+            'status' => 'belum', // Status pesan
+            'dikirim_pada' => now(), // Waktu pesan dikirim
+            'dibalas_pada' => null, // Belum dibalas
         ]);
     }
 }

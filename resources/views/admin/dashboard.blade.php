@@ -1,47 +1,25 @@
 <!-- resources/views/admin/dashboard.blade.php -->
-
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Admin Dashboard')
 
-@section('sidebar')
-    @include('admin.sidebar') <!-- Sidebar khusus admin -->
-@endsection
-
 @section('content')
     <div class="container mt-4">
-        <h1>Selamat datang, Admin!</h1>
-        <p>Ini adalah dashboard admin, Anda dapat mengelola buku, kategori, dan pesanan di sini.</p>
+        <h1 class="text-3xl font-semibold mb-4">Selamat datang, Admin!</h1>
+        <p class="text-lg">Ini adalah dashboard admin, Anda dapat mengelola buku, kategori, dan pesanan di sini.</p>
 
-        <div class="row">
-            <!-- Menampilkan jumlah buku -->
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Jumlah Buku</h5>
-                        <p class="card-text">{{ $jumlahBuku }} buku di dalam sistem.</p>
-                    </div>
-                </div>
+        <div class="mt-6 grid grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-medium">Jumlah Buku</h2>
+                <p class="text-2xl font-bold">{{ $jumlahBuku }}</p>
             </div>
-
-            <!-- Menampilkan jumlah kategori -->
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Jumlah Kategori</h5>
-                        <p class="card-text">{{ $jumlahKategori }} kategori buku yang tersedia.</p>
-                    </div>
-                </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-medium">Jumlah Kategori</h2>
+                <p class="text-2xl font-bold">{{ $jumlahKategori }}</p>
             </div>
-
-            <!-- Menampilkan jumlah pesanan yang perlu diproses -->
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Jumlah Pesanan</h5>
-                        <p class="card-text">{{ $jumlahPesanan }} pesanan yang perlu diproses.</p>
-                    </div>
-                </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-medium">Pesanan Pending</h2>
+                <p class="text-2xl font-bold">{{ $jumlahPesanan }}</p>
             </div>
         </div>
     </div>
