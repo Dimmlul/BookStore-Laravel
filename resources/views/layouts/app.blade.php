@@ -1,30 +1,52 @@
-<!-- resources/views/layouts/admin.blade.php -->
-
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Admin Dashboard')</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Buku</title>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite('resources/css/app.css')
 </head>
 
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-100">
 
-    <!-- Sidebar -->
-    @include('admin.sidebar')
+    <!-- Navbar -->
+    <header class="bg-blue-800 text-white p-4">
+        <nav class="flex justify-between">
+            {{-- <a href="{{ route('guest.home') }}" class="text-lg font-bold">Toko Buku</a>
+            <div class="space-x-6">
+                <a href="{{ route('guest.home') }}" class="text-white">Home</a>
+                <a href="{{ route('guest.tentang') }}" class="text-white">Tentang</a>
+                <a href="{{ route('guest.kontak') }}" class="text-white">Kontak</a> --}}
+            @if (Auth::check())
+                <!-- Jika user sudah login, tampilkan menu user -->
+                <a href="{{ route('user.home') }}" class="text-white">Dashboard</a>
+                <a href="{{ route('user.profil') }}" class="text-white">Profil</a>
+                <a href="{{ route('user.keranjang.index') }}" class="text-white">Keranjang</a>
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-white">Logout</button>
+                </form>
+            @else
+                <!-- Jika guest, tampilkan menu login dan register -->
+                <a href="{{ route('login') }}" class="text-white">Login</a>
+                <a href="{{ route('register') }}" class="text-white">Register</a>
+            @endif
+            </div>
+        </nav>
+    </header>
 
-    <div class="flex flex-col flex-1">
-        <!-- Navbar -->
-        @include('layouts.header')
+    <!-- Main Content -->
+    <main class="py-10">
+        @yield('content')
+    </main>
 
-        <!-- Content -->
-        <main class="p-6">
-            @yield('content')
-        </main>
+    <!-- Footer -->
+    <footer class="bg-blue-800 text-white text-center p-4">
+        <p>&copy; 2025 Toko Buku. Semua Hak Dilindungi.</p>
+    </footer>
 
-        <!-- Footer -->
-        <footer class="text-center text-sm text-gray-500 py-4">
-            &copy; {{ date('Y') }} BukuStore. All rights reserved.
-        </footer>
-    </div>
+</body>
+
+</html>

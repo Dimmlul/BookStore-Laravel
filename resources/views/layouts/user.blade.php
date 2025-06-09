@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Dashboard User')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    @vite('resources/css/app.css')
 </head>
 
 <body class="bg-gray-100 text-gray-900">

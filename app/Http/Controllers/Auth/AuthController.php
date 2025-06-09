@@ -36,7 +36,7 @@ class AuthController extends Controller
             if ($role === 'admin') {
                 return redirect()->intended('/admin/dashboard');
             } elseif ($role === 'user') {
-                return redirect()->intended('/user/dashboard');
+                return redirect()->intended('/user/home');
             } else {
                 // Jika peran tidak dikenali, redirect ke halaman default
                 return redirect('/');
@@ -77,7 +77,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/user/dashboard');
+        return redirect('/user/home');
     }
 
     // Proses logout

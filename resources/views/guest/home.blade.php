@@ -9,10 +9,10 @@
 
         <!-- Daftar Buku -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            @foreach ($buku as $buku)
-                <!-- Loop through each $buku here -->
-                <x-book-card :buku="$buku" /> <!-- Pass each $buku to the book-card component -->
-            @endforeach
+            {{-- @foreach ($buku as $buku)
+                <!-- Menampilkan setiap buku menggunakan komponen card -->
+                <x-book-card :buku="$buku" /> <!-- Passing each buku to the book-card component -->
+            @endforeach --}}
         </div>
     </div>
 @endsection

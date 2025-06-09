@@ -46,7 +46,7 @@ class BukuController extends Controller
             'stok' => 'required|integer',
             'ISBN' => 'required',
             'kategori_id' => 'required',
-            'gambar' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048', // Validasi gambar
+            'gambar' => 'required|image|max:2048', // Validasi gambar
         ]);
 
         // Mengambil semua data dari form
@@ -95,7 +95,7 @@ class BukuController extends Controller
             'stok' => 'required|integer',
             'ISBN' => 'required',
             'kategori_id' => 'required',
-            'gambar' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048', // Validasi gambar
+            'gambar' => 'required|image|max:2048', // Validasi gambar
         ]);
 
         // Mengambil data dari form untuk update
