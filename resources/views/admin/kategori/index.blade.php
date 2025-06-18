@@ -30,7 +30,7 @@
                     <tr class="bg-gray-200 text-left">
                         <th class="px-6 py-4">ID</th>
                         <th class="px-6 py-4">Nama Kategori</th>
-                        <th class="px-6 py-4">Action</th>
+                        <th class="px-6 py-4">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,8 +44,7 @@
                                     class="text-blue-600 hover:text-blue-800">Edit</a>
                                 |
                                 <!-- Delete Form -->
-                                <form action="{{ route('admin.kategori.destroy', $item->id) }}" method="POST"
-                                    style="display:inline;">
+                                <form action="{{ route('admin.kategori.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-800">Hapus</button>

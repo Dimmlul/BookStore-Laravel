@@ -54,8 +54,8 @@
                 </button>
 
                 <!-- Register link -->
-                <p class="text-gray-500/90 text-sm mt-4">Don’t have an account? <a class="text-blue-500 hover:underline"
-                        href="/register">Register</a></p>
+                <p class="text-gray-500/90 text-sm mt-4">Belum punya akun? <a class="text-blue-500 hover:underline"
+                        href="/register">Daftar</a></p>
             </form>
         </div>
     </div>

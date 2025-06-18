@@ -22,10 +22,7 @@
             @yield('content')
         </main>
 
-        <!-- Footer -->
-        <footer class="text-center text-sm text-gray-500 py-4">
-            &copy; {{ date('Y') }} BukuStore. All rights reserved.
-        </footer>
+
     </div>
 
 </body>

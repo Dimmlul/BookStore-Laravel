@@ -91,7 +91,7 @@
                 <p class="text-sm font-medium uppercase mt-6">Metode Pembayaran</p>
                 <select class="w-full border border-gray-300 bg-white px-3 py-2 mt-2 outline-none">
                     <option value="Online">Transfer Bank</option>
-                    {{-- <option value="COD">Cash On Delivery</option> --}}
+                    <option value="QRIS">QRIS</option>
                 </select>
             </div>
 

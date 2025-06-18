@@ -63,7 +63,7 @@
         <form method="POST" action="{{ route('logout') }}" class="inline">
             @csrf
             <button type="submit"
-                class="flex items-center space-x-4 p-3 rounded-lg hover:bg-red-600 transition duration-300 text-red-600 hover:text-white">
+                class="flex items-center space-x-4 p-6 rounded-lg hover:bg-red-600 transition duration-300 text-red-600 hover:text-white">
                 <i class="fas fa-sign-out-alt text-xl"></i>
                 <span class="font-medium">Logout</span>
             </button>
