@@ -56,7 +56,7 @@
     <div class="border-t border-gray-700 my-6"></div>
 
     <!-- Empty Space to Push SignOut and Profile to the Bottom -->
-    <div class="flex-grow"></div> <!-- This will push the following items to the bottom -->
+    <div class="flex-grow"></div>
 
     <!-- Logout Button -->
     <li class="nav-item">
@@ -72,7 +72,8 @@
 
     <!-- User Information -->
     <div class="flex items-center space-x-3 mt-6">
-        <img src="{{ asset('path_to_user_profile_image') }}" alt="Profile" class="w-10 h-10 rounded-full">
+        <img src="https://www.shutterstock.com/image-vector/user-icon-vector-600nw-393536320.jpg" alt="Profile"
+            class="w-10 h-10 rounded-full">
         <div class="text-sm">
             <div class="font-medium">{{ Auth::user()->name }}</div>
             <div class="text-gray-400">{{ Auth::user()->email }}</div>

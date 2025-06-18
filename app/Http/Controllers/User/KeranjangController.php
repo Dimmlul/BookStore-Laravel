@@ -15,13 +15,21 @@ class KeranjangController extends Controller
     public function index()
     {
         $keranjang = Auth::user()->keranjang;  // Mengakses keranjang langsung dari relasi
+        $alamat = Auth::user()->alamat;        // Mengambil alamat dari user yang sedang login
 
         // Jika tidak ada keranjang, tampilkan pesan atau redirect ke halaman lain
         if (!$keranjang) {
             return redirect()->route('user.home')->with('error', 'Keranjang kosong!');
         }
 
-        return view('user.keranjang.index', compact('keranjang'));
+        // Menghitung total harga keranjang
+        $totalPrice = 0;
+        foreach ($keranjang->isiKeranjang as $item) {
+            $totalPrice += $item->buku->harga * $item->jumlah;
+        }
+
+        // Passing keranjang, totalPrice, dan alamat ke view
+        return view('user.keranjang.index', compact('keranjang', 'totalPrice', 'alamat'));
     }
 
     // Menambahkan Buku ke Keranjang

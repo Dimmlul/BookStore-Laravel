@@ -6,27 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class="bg-gray-100">
+
+    <!-- Flex container for the page -->
     <div class="flex h-screen w-full">
+        <!-- Left side image (hidden on mobile) -->
         <div class="w-full hidden md:inline-block">
-            <img class="h-full" src="https://i.pinimg.com/736x/06/67/7e/06677ebc849c6d97b771b8a66fdd4dde.jpg"
-                alt="leftSideImage">
+            <img class="h-full w-full object-cover"
+                src="https://i.pinimg.com/736x/4e/4f/91/4e4f91ef429bfaa1ceac044c786b98b4.jpg" alt="leftSideImage">
         </div>
 
-        <div class="flex flex-col items-center justify-center w-full">
+        <!-- Right side content (Login form) -->
+        <div class="flex flex-col items-center justify-center w-full px-4 md:px-0">
             <form method="POST" action="{{ route('login') }}"
-                class="md:w-96 w-80 flex flex-col items-center justify-center">
+                class="md:w-96 w-full flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-8">
                 @csrf
-                <h2 class="text-4xl text-gray-900 font-medium">Login</h2>
+                <h2 class="text-4xl text-blue-800 font-medium mb-6">Login</h2>
 
+                <!-- Error message display -->
                 @if ($errors->any())
                     <div class="text-red-500 my-2">{{ $errors->first() }}</div>
                 @endif
 
+                <!-- Email input -->
                 <div
                     class="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden gap-2 pl-6 mt-6">
                     <input type="email" name="email" placeholder="Email"
@@ -34,6 +39,7 @@
                         required>
                 </div>
 
+                <!-- Password input -->
                 <div
                     class="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden gap-2 pl-6 mt-4">
                     <input type="password" name="password" placeholder="Password"
@@ -41,16 +47,19 @@
                         required>
                 </div>
 
+                <!-- Login Button -->
                 <button type="submit"
-                    class="mt-6 w-full h-11 rounded-full text-white bg-indigo-500 hover:opacity-90 transition-opacity">
+                    class="mt-6 w-full h-11 rounded-full text-white bg-blue-800 hover:bg-blue-700 transition duration-300">
                     Login
                 </button>
 
-                <p class="text-gray-500/90 text-sm mt-4">Don’t have an account? <a
-                        class="text-indigo-400 hover:underline" href="/register">Register</a></p>
+                <!-- Register link -->
+                <p class="text-gray-500/90 text-sm mt-4">Don’t have an account? <a class="text-blue-500 hover:underline"
+                        href="/register">Register</a></p>
             </form>
         </div>
     </div>
+
 </body>
 
 </html>

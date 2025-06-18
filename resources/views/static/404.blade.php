@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>@yield('title', '404 Error | Not Found')</title>
     @vite('resources/css/app.css')
 </head>
 

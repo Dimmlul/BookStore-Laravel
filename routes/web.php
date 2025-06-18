@@ -20,42 +20,42 @@ use App\Http\Controllers\User\{
 };
 use App\Http\Controllers\Guest\GuestController;
 
-// =============================
-// 🔓 RUTE AUTENTIKASI
-// =============================
-// Menangani rute untuk login dan registrasi, hanya untuk pengunjung yang belum login
-Route::middleware('guest')->group(function () {
-    // Login & Register
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-    Route::post('/register', [AuthController::class, 'register']);
-
-    // Guest Home Page
-    Route::get('/', [GuestController::class, 'home'])->name('guest.home');
-
-    Route::get('/tentang', [GuestController::class, 'tentang'])->name('guest.tentang');
-    Route::get('/kontak', [GuestController::class, 'kontak'])->name('guest.kontak');
-});
-
-// Logout route (for authenticated users)
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // =============================
 // 🌐 RUTE PUBLIK / Guest
 // =============================
 // Route untuk halaman publik yang bisa diakses oleh semua orang (guest)
-// Route::get('/', function () {
-//     if (Auth::check()) {
-//         $role = Auth::user()->role;
-//         if ($role === 'admin') {
-//             return redirect()->route('admin.dashboard');
-//         } elseif ($role === 'user') {
-//             return redirect()->route('user.home');
-//         }
-//     }
-//     return view('guest.home');  // Default page for guests
-// })->name('guest.home');
+Route::get('/', function () {
+    if (Auth::check()) {
+        $role = Auth::user()->role;
+        if ($role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($role === 'user') {
+            return redirect()->route('user.home');
+        }
+    }
+    return view('guest.home');  // Default page for guests
+})->name('guest.home');
+
+// =============================
+// 🔓 RUTE AUTENTIKASI
+// =============================
+// Menangani rute untuk login dan registrasi, hanya untuk pengunjung yang belum login
+// Login & Register
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
+// Guest Home Page
+Route::get('/', [GuestController::class, 'home'])->name('guest.home');
+
+Route::get('/tentang', [GuestController::class, 'tentang'])->name('guest.tentang');
+Route::get('/kontak', [GuestController::class, 'kontak'])->name('guest.kontak');
+
+
+// Logout route (for authenticated users)
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // =============================
 // 🧑‍💼 RUTE ADMIN
